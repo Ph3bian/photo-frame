@@ -1,11 +1,25 @@
 $bg-color: #f0f4f9;
+$bg-white: #ffffff;
 
 .Home {
   background-color: $bg-color;
   height: 100vh;
   margin: -8px;
+  display: grid;
+  grid-template-columns: 12.5rem 1fr;
+  grid-column-gap: 2rem;
+  font-size: 1rem;
+  overflow:hidden;
   .controls {
+    background-color: $bg-white;
   }
+
   .container {
+      height: 100%;
+    &Body {
+      background-color: $bg-white;
+      height: 100%;
+      margin: 3rem;
+    }
   }
 }
