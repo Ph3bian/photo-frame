@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import 'cropperjs/dist/cropper.css';
+import "cropperjs/dist/cropper.css";
 import { Cropper } from "react-cropper";
 import styles from "./home.module.scss";
 import DefaultImage from "../../assets/images/headshot.png";
@@ -11,8 +11,8 @@ const Home: React.FC = () => {
   const [cropper, setCropper] = useState<Cropper>();
 
   const onChange = (e: any) => {
-    console.log("hello")
-    console.log("hello", e)
+    console.log("hello");
+    console.log("hello", e);
     e.preventDefault();
     let files;
     if (e.dataTransfer) {
@@ -27,25 +27,79 @@ const Home: React.FC = () => {
     reader.readAsDataURL(files[0]);
   };
 
-  const handleCropData = () => {
+  const handleData = (type: string) => {
     if (typeof cropper !== "undefined") {
-      setCropData(cropper.getCroppedCanvas().toDataURL());
+      if (type === "crop") {
+        setCropData(cropper.getCroppedCanvas().toDataURL());
+      }
+      if (type === "rotate") {
+        cropper.rotate(90);
+      }
+      if (type === "clear") {
+        cropper.clear();
+      }
+      if (type === "reset") {
+        cropper.reset();
+      }
+      if (type === "publish") {
+        cropper
+          .getCroppedCanvas({ maxWidth: 4096, maxHeight: 4096 })
+      }
+      if (type === "moveUp") {
+        cropper.move(0, 10);
+      }
+      if (type === "moveDown") {
+        cropper.move(0, -10);
+      }
+      if (type === "moveLeft") {
+        cropper.move(-10, 0);
+      }
+      if (type === "moveRight") {
+        cropper.move(10, 0);
+      }
     }
   };
 
   return (
     <div className={styles.Home}>
-      <div className={styles.controls}></div>
+      <div className={styles.controls}>
+        <button type="button" onClick={() => handleData("crop")}>
+          Crop Image
+        </button>
+        <button type="button" onClick={() => handleData("rotate")}>
+          Rotate Image
+        </button>
+        <button type="button" onClick={() => handleData("clear")}>
+          Clear
+        </button>
+        <button type="button" onClick={() => handleData("reset")}>
+          Reset
+        </button>
+        <button type="button" onClick={() => handleData("publish")}>
+          Publish
+        </button>
+        <button type="button" onClick={() => handleData("moveUp")}>
+          move up
+        </button>
+        <button type="button" onClick={() => handleData("moveDown")}>
+          move down
+        </button>
+        <button type="button" onClick={() => handleData("moveLeft")}>
+          move left
+        </button>
+        <button type="button" onClick={() => handleData("moveDown")}>
+          move right
+        </button>{" "}
+        <button type="button" onClick={() => handleData("scale")}>
+          scale
+        </button>
+      </div>
       <div className={styles.container}>
         <div className={styles.containerBody}>
           <h1>Upload Image</h1>
 
           <div>
             <h1>Preview</h1>
-            <div
-              id="img-preview"
-              style={{ width: "100%", height: 150 }}
-            />
           </div>
           <div className="image">
             <Cropper
@@ -57,6 +111,7 @@ const Home: React.FC = () => {
               ref={imageRef}
               dragMode={"move"}
               checkOrientation={true}
+              rotatable={true}
               onInitialized={(instance) => {
                 setCropper(instance);
               }}
@@ -65,10 +120,7 @@ const Home: React.FC = () => {
               <input type="file" onChange={onChange} name="file" />
             </div>
             <div className={styles.imagePublish}>
-              <button type="button" onClick={handleCropData}>
-                Crop Image
-              </button>
-              <img style={{width: '100%'}} src={cropData} alt="cropped" />
+              <img style={{ width: "100%" }} src={cropData} alt="cropped" />
             </div>
           </div>
         </div>
