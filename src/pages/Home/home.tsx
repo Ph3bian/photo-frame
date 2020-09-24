@@ -3,6 +3,7 @@ import "cropperjs/dist/cropper.css";
 import { Cropper } from "react-cropper";
 import styles from "./home.module.scss";
 import DefaultImage from "../../assets/images/headshot.png";
+import Button from "../../components/Button"
 
 const Home: React.FC = () => {
   const [image, setImage] = useState(DefaultImage);
@@ -62,36 +63,36 @@ const Home: React.FC = () => {
       <div className={styles.controls}>
         <h3>Edit Image</h3>
         <div className={styles.controlsButton}>
-          <button type="button" onClick={() => handleData("crop")}>
-            Crop Image
-          </button>
-          <button type="button" onClick={() => handleData("rotate")}>
-            Rotate Image
-          </button>
-          <button type="button" onClick={() => handleData("clear")}>
+          <Button type="button" onClick={() => handleData("crop")}>
+            Crop
+          </Button>
+          <Button type="button" onClick={() => handleData("rotate")}>
+            Rotate
+          </Button>
+          <Button type="button" onClick={() => handleData("clear")}>
             Clear
-          </button>
-          <button type="button" onClick={() => handleData("reset")}>
+          </Button>
+          <Button type="button" onClick={() => handleData("reset")}>
             Reset
-          </button>
-          <button type="button" onClick={() => handleData("publish")}>
+          </Button>
+          <Button type="button" onClick={() => handleData("publish")}>
             Publish
-          </button>
-          <button type="button" onClick={() => handleData("moveUp")}>
+          </Button>
+          <Button type="button" onClick={() => handleData("moveUp")}>
             move up
-          </button>
-          <button type="button" onClick={() => handleData("moveDown")}>
+          </Button>
+          <Button type="button" onClick={() => handleData("moveDown")}>
             move down
-          </button>
-          <button type="button" onClick={() => handleData("moveLeft")}>
+          </Button>
+          <Button type="button" onClick={() => handleData("moveLeft")}>
             move left
-          </button>
-          <button type="button" onClick={() => handleData("moveRight")}>
+          </Button>
+          <Button type="button" onClick={() => handleData("moveRight")}>
             move right
-          </button>{" "}
-          <button type="button" onClick={() => handleData("scale")}>
+          </Button>{" "}
+          <Button type="button" onClick={() => handleData("scale")}>
             scale
-          </button>
+          </Button>
           
         </div>
         <div className={styles.imageUpload}>

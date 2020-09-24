@@ -1,5 +1,4 @@
-$bg-color: #f0f4f9;
-$bg-white: #ffffff;
+@import "../../styles/variables";
 
 .Home {
   background-color: $bg-color;
@@ -9,20 +8,21 @@ $bg-white: #ffffff;
   grid-template-columns: 15.625rem 1fr;
   grid-column-gap: 2rem;
   font-size: 1rem;
-  overflow:hidden;
+  overflow: hidden;
+  font-family: "Syne", sans-serif;
   .controls {
     background-color: $bg-white;
     padding: 1rem;
     text-align: center;
-    &Button{
-      display:grid;
+    &Button {
+      display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-gap: .5rem;
+      grid-gap: 0.5rem;
     }
   }
 
   .container {
-      height: 100%;
+    height: 100%;
     &Body {
       background-color: $bg-white;
       height: 100%;
