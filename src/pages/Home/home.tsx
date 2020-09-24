@@ -29,33 +29,30 @@ const Home: React.FC = () => {
 
   const handleData = (type: string) => {
     if (typeof cropper !== "undefined") {
-      if (type === "crop") {
-        setCropData(cropper.getCroppedCanvas().toDataURL());
-      }
-      if (type === "rotate") {
-        cropper.rotate(90);
-      }
-      if (type === "clear") {
-        cropper.clear();
-      }
-      if (type === "reset") {
-        cropper.reset();
-      }
-      if (type === "publish") {
-        cropper
-          .getCroppedCanvas({ maxWidth: 4096, maxHeight: 4096 })
-      }
-      if (type === "moveUp") {
-        cropper.move(0, 10);
-      }
-      if (type === "moveDown") {
-        cropper.move(0, -10);
-      }
-      if (type === "moveLeft") {
-        cropper.move(-10, 0);
-      }
-      if (type === "moveRight") {
-        cropper.move(10, 0);
+      switch (type) {
+        case "crop":
+          setCropData(cropper.getCroppedCanvas().toDataURL());
+          return cropper.crop();
+        case "scale":
+          return cropper.scale(0, 1.01);
+        case "rotate":
+          return cropper.rotate(90);
+        case "clear":
+          return cropper.clear();
+        case "reset":
+          return cropper.reset();
+        case "moveDown":
+          return cropper.move(0, 10);
+        case "moveUp":
+          return cropper.move(0, -10);
+        case "moveLeft":
+          return cropper.move(-10, 0);
+        case "publish":
+          return
+        case "moveRight":
+          return cropper.move(10, 0);
+        default:
+          return;
       }
     }
   };
@@ -63,36 +60,43 @@ const Home: React.FC = () => {
   return (
     <div className={styles.Home}>
       <div className={styles.controls}>
-        <button type="button" onClick={() => handleData("crop")}>
-          Crop Image
-        </button>
-        <button type="button" onClick={() => handleData("rotate")}>
-          Rotate Image
-        </button>
-        <button type="button" onClick={() => handleData("clear")}>
-          Clear
-        </button>
-        <button type="button" onClick={() => handleData("reset")}>
-          Reset
-        </button>
-        <button type="button" onClick={() => handleData("publish")}>
-          Publish
-        </button>
-        <button type="button" onClick={() => handleData("moveUp")}>
-          move up
-        </button>
-        <button type="button" onClick={() => handleData("moveDown")}>
-          move down
-        </button>
-        <button type="button" onClick={() => handleData("moveLeft")}>
-          move left
-        </button>
-        <button type="button" onClick={() => handleData("moveDown")}>
-          move right
-        </button>{" "}
-        <button type="button" onClick={() => handleData("scale")}>
-          scale
-        </button>
+        <h3>Edit Image</h3>
+        <div className={styles.controlsButton}>
+          <button type="button" onClick={() => handleData("crop")}>
+            Crop Image
+          </button>
+          <button type="button" onClick={() => handleData("rotate")}>
+            Rotate Image
+          </button>
+          <button type="button" onClick={() => handleData("clear")}>
+            Clear
+          </button>
+          <button type="button" onClick={() => handleData("reset")}>
+            Reset
+          </button>
+          <button type="button" onClick={() => handleData("publish")}>
+            Publish
+          </button>
+          <button type="button" onClick={() => handleData("moveUp")}>
+            move up
+          </button>
+          <button type="button" onClick={() => handleData("moveDown")}>
+            move down
+          </button>
+          <button type="button" onClick={() => handleData("moveLeft")}>
+            move left
+          </button>
+          <button type="button" onClick={() => handleData("moveRight")}>
+            move right
+          </button>{" "}
+          <button type="button" onClick={() => handleData("scale")}>
+            scale
+          </button>
+          
+        </div>
+        <div className={styles.imageUpload}>
+          <input type="file" onChange={onChange} name="file" />
+        </div>
       </div>
       <div className={styles.container}>
         <div className={styles.containerBody}>
@@ -103,7 +107,7 @@ const Home: React.FC = () => {
           </div>
           <div className="image">
             <Cropper
-              style={{ height: 400, width: "100%" }}
+              style={{ height: 500, width: "100%" }}
               initialAspectRatio={16 / 9}
               preview="#img-preview"
               guides={true}
@@ -112,15 +116,14 @@ const Home: React.FC = () => {
               dragMode={"move"}
               checkOrientation={true}
               rotatable={true}
+              modal={true}
               onInitialized={(instance) => {
                 setCropper(instance);
               }}
             />
-            <div className={styles.imageUpload}>
-              <input type="file" onChange={onChange} name="file" />
-            </div>
+
             <div className={styles.imagePublish}>
-              <img style={{ width: "100%" }} src={cropData} alt="cropped" />
+              {/* <img style={{ width: "100%" }} src={cropData} alt="cropped" /> */}
             </div>
           </div>
         </div>

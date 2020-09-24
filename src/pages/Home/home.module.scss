@@ -12,6 +12,13 @@ $bg-white: #ffffff;
   overflow:hidden;
   .controls {
     background-color: $bg-white;
+    padding: 1rem;
+    text-align: center;
+    &Button{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: .5rem;
+    }
   }
 
   .container {
