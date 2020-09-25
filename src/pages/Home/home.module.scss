@@ -1,12 +1,13 @@
 @import "../../styles/variables";
+@import-normalize;
 
 .Home {
   background-color: $bg-color;
   height: 100vh;
   margin: -8px;
   display: grid;
-  grid-template-columns: 15.625rem 1fr;
-  grid-column-gap: 2rem;
+  grid-template-columns: 18.75rem 1fr;
+  grid-column-gap: 1.5rem;
   font-size: 1rem;
   overflow: hidden;
   font-family: "Syne", sans-serif;
@@ -20,13 +21,73 @@
       grid-gap: 0.5rem;
     }
   }
+  .imageUpload {
+    margin-top: 4rem;
+    input[type="file"] {
+      border: 0;
+      clip: rect(0, 0, 0, 0);
+      height: 1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute !important;
+      white-space: nowrap;
+      width: 1px;
+
+      + label {
+        background-color: #000;
+        border-radius: 4rem;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 1rem;
+        font-weight: 700;
+        height: 4rem;
+        line-height: 4rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        transition: background-color 0.3s;
+      }
+
+      &:focus + label,
+      + label:hover {
+        background-color: #f15d22;
+      }
+
+      &:focus + label {
+        outline: 1px dotted #000;
+        outline: -webkit-focus-ring-color auto 5px;
+      }
+    }
+    label {
+      display: block;
+      border: $light-grey 1px solid;
+      padding: 0.5rem;
+      border-radius: 3px;
+    }
+  }
 
   .container {
     height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-row-gap: 1rem;
+    &Header,
     &Body {
       background-color: $bg-white;
+    }
+    &Header {
+      border-bottom: 1px solid $light-grey;
+      padding: 0.5rem;
+      ul {
+        li {
+          list-style: none;
+          font-size: 0.75rem;
+        }
+      }
+    }
+    &Body {
       height: 100%;
-      margin: 3rem;
+      padding: 0.5rem;
     }
   }
 }

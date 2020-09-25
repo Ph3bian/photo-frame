@@ -3,7 +3,7 @@ import "cropperjs/dist/cropper.css";
 import { Cropper } from "react-cropper";
 import styles from "./home.module.scss";
 import DefaultImage from "../../assets/images/headshot.png";
-import Button from "../../components/Button"
+import Button from "../../components/Button";
 
 const Home: React.FC = () => {
   const [image, setImage] = useState(DefaultImage);
@@ -12,8 +12,6 @@ const Home: React.FC = () => {
   const [cropper, setCropper] = useState<Cropper>();
 
   const onChange = (e: any) => {
-    console.log("hello");
-    console.log("hello", e);
     e.preventDefault();
     let files;
     if (e.dataTransfer) {
@@ -49,7 +47,7 @@ const Home: React.FC = () => {
         case "moveLeft":
           return cropper.move(-10, 0);
         case "publish":
-          return
+          return;
         case "moveRight":
           return cropper.move(10, 0);
         default:
@@ -75,9 +73,6 @@ const Home: React.FC = () => {
           <Button type="button" onClick={() => handleData("reset")}>
             Reset
           </Button>
-          <Button type="button" onClick={() => handleData("publish")}>
-            Publish
-          </Button>
           <Button type="button" onClick={() => handleData("moveUp")}>
             move up
           </Button>
@@ -93,22 +88,28 @@ const Home: React.FC = () => {
           <Button type="button" onClick={() => handleData("scale")}>
             scale
           </Button>
-          
         </div>
         <div className={styles.imageUpload}>
-          <input type="file" onChange={onChange} name="file" />
+          <label htmlFor="file">Upload</label>
+          <input type="file" onChange={onChange} name="file" id="file" />
+
+          <Button type="button" onClick={() => handleData("publish")}>
+            Publish
+          </Button>
         </div>
       </div>
       <div className={styles.container}>
+        <div className={styles.containerHeader}>
+          <h3>Upload Image </h3>
+          <ul>
+          <li>Select area you want to crop</li>
+          <li>Click Publish to create frame</li>
+          </ul>
+        </div>
         <div className={styles.containerBody}>
-          <h1>Upload Image</h1>
-
-          <div>
-            <h1>Preview</h1>
-          </div>
           <div className="image">
             <Cropper
-              style={{ height: 500, width: "100%" }}
+              style={{ height:"37.5rem", width: "100%", margin:"auto" }}
               initialAspectRatio={16 / 9}
               preview="#img-preview"
               guides={true}
