@@ -1,9 +1,10 @@
 @import "../../styles/variables";
 
-.Button{
-    font-family: 'Syne', sans-serif;
-    border: $light-grey 1px solid;
-    background: $transparent;
-    padding: 0.5rem;
-    border-radius: 3px;
+.Button {
+  font-family: "Syne", sans-serif;
+  border: $light-grey 1px solid;
+  background: $transparent;
+  padding: 0.5rem;
+  border-radius: 3px;
+  min-width: 8.75rem;
 }

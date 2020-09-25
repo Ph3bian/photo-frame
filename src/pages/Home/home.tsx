@@ -4,10 +4,13 @@ import { Cropper } from "react-cropper";
 import styles from "./home.module.scss";
 import DefaultImage from "../../assets/images/headshot.png";
 import Button from "../../components/Button";
+import { postData, editActions } from "./functions";
+import Preview from "./preview";
 
 const Home: React.FC = () => {
-  const [image, setImage] = useState(DefaultImage);
-  const [cropData, setCropData] = useState("#");
+  const [image, setImage] = useState<string>(DefaultImage);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [cropData, setCropData] = useState<string>("#");
   const imageRef = useRef<HTMLImageElement>(null);
   const [cropper, setCropper] = useState<Cropper>();
 
@@ -26,30 +29,49 @@ const Home: React.FC = () => {
     reader.readAsDataURL(files[0]);
   };
 
+  const handleSubmit = () => {
+    postData("http://localhost:3000", { image: cropData })
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        error ? console.error("Error:", error) : console.error("Uhoh");
+      });
+  };
+
+  const handlePublish = () => setShowModal(!showModal);
+
   const handleData = (type: string) => {
     if (typeof cropper !== "undefined") {
       switch (type) {
         case "crop":
-          setCropData(cropper.getCroppedCanvas().toDataURL());
-          return cropper.crop();
+          cropper.crop();
+
+          return setCropData(cropper.getCroppedCanvas().toDataURL());
         case "scale":
-          return cropper.scale(0, 1.01);
+          cropper.scale(0, 1.01);
+          return setCropData(cropper.getCroppedCanvas().toDataURL());
         case "rotate":
-          return cropper.rotate(90);
+          cropper.rotate(90);
+          return setCropData(cropper.getCroppedCanvas().toDataURL());
         case "clear":
-          return cropper.clear();
+          cropper.clear();
+          return setCropData(cropper.getCroppedCanvas().toDataURL());
         case "reset":
-          return cropper.reset();
+          cropper.reset();
+          return setCropData(cropper.getCroppedCanvas().toDataURL());
         case "moveDown":
-          return cropper.move(0, 10);
+          cropper.move(0, 10);
+          return setCropData(cropper.getCroppedCanvas().toDataURL());
         case "moveUp":
-          return cropper.move(0, -10);
+          cropper.move(0, -10);
+          return setCropData(cropper.getCroppedCanvas().toDataURL());
         case "moveLeft":
-          return cropper.move(-10, 0);
-        case "publish":
-          return;
+          cropper.move(-10, 0);
+          return setCropData(cropper.getCroppedCanvas().toDataURL());
         case "moveRight":
-          return cropper.move(10, 0);
+          cropper.move(10, 0);
+          return setCropData(cropper.getCroppedCanvas().toDataURL());
         default:
           return;
       }
@@ -61,39 +83,18 @@ const Home: React.FC = () => {
       <div className={styles.controls}>
         <h3>Edit Image</h3>
         <div className={styles.controlsButton}>
-          <Button type="button" onClick={() => handleData("crop")}>
-            Crop
-          </Button>
-          <Button type="button" onClick={() => handleData("rotate")}>
-            Rotate
-          </Button>
-          <Button type="button" onClick={() => handleData("clear")}>
-            Clear
-          </Button>
-          <Button type="button" onClick={() => handleData("reset")}>
-            Reset
-          </Button>
-          <Button type="button" onClick={() => handleData("moveUp")}>
-            move up
-          </Button>
-          <Button type="button" onClick={() => handleData("moveDown")}>
-            move down
-          </Button>
-          <Button type="button" onClick={() => handleData("moveLeft")}>
-            move left
-          </Button>
-          <Button type="button" onClick={() => handleData("moveRight")}>
-            move right
-          </Button>{" "}
-          <Button type="button" onClick={() => handleData("scale")}>
-            scale
-          </Button>
+          {editActions &&
+            editActions.map(({ key, title }) => (
+              <Button type="button" key={key} onClick={() => handleData(key)}>
+                {title}
+              </Button>
+            ))}
         </div>
         <div className={styles.imageUpload}>
           <label htmlFor="file">Upload</label>
           <input type="file" onChange={onChange} name="file" id="file" />
 
-          <Button type="button" onClick={() => handleData("publish")}>
+          <Button type="button" onClick={handlePublish}>
             Publish
           </Button>
         </div>
@@ -102,14 +103,14 @@ const Home: React.FC = () => {
         <div className={styles.containerHeader}>
           <h3>Upload Image </h3>
           <ul>
-          <li>Select area you want to crop</li>
-          <li>Click Publish to create frame</li>
+            <li>Select area you want to crop</li>
+            <li>Click Publish to create frame</li>
           </ul>
         </div>
         <div className={styles.containerBody}>
           <div className="image">
             <Cropper
-              style={{ height:"37.5rem", width: "100%", margin:"auto" }}
+              style={{ height: "37.5rem", width: "100%", margin: "auto" }}
               initialAspectRatio={16 / 9}
               preview="#img-preview"
               guides={true}
@@ -130,6 +131,9 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
+      {showModal && <Preview data={cropData} showModal={showModal} setShowModal={setShowModal}/>
+       
+      }
     </div>
   );
 };

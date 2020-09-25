@@ -4,7 +4,7 @@ export interface ButtonProps {
   type: "button" | "reset" | "submit" | undefined;
   onClick(): void;
   children: any;
-  rest?: any;
+  props?: any;
   title?: string
 }
 

@@ -5,3 +5,4 @@ export { ReactComponent as Up } from './arrow-up.svg';
 export { ReactComponent as Reset } from './reset.svg';
 export { ReactComponent as Upload } from './upload.svg';
 export { ReactComponent as Crop } from './crop.svg';
+export { ReactComponent as CloseIcon } from './close-icon.svg';
