@@ -4,6 +4,6 @@ import Home from './home'
 
 test('renders learn react link', () => {
   const { getByText } = render(<Home />);
-  const linkElement = getByText(/photo frame/i);
+  const linkElement = getByText(/Upload Image/i);
   expect(linkElement).toBeInTheDocument();
 });
