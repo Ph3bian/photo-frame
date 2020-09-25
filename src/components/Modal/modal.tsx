@@ -2,11 +2,11 @@ import React, { useState, useRef, useCallback, useEffect } from "react";
 import styles from "./modal.module.scss";
 import { CloseIcon } from "../../assets/svg";
 export interface ModalProps {
-  children: any;
+  children: React.ReactNode;
   props?: any;
   title: string;
-  show: boolean;
-  outsideClick: () => void;
+  show?: boolean;
+  outsideClick?: () => void;
 }
 
 const Modal: React.FC<ModalProps> = ({
