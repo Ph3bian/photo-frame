@@ -16,8 +16,7 @@ const Preview: React.FC<PreviewProps> = ({ data, showModal, setShowModal }) => (
     show={showModal}
   >
     <div className={styles.Preview}>
-      <img src={data} alt="preview" />
-      <div id="img-preview"></div>
+      <img src={data} alt="preview" id="img-preview"className={styles.PreviewImage} />
     </div>
   </Modal>
 );

@@ -19,10 +19,16 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 0.5rem;
+      margin-bottom: 5rem;
+    }
+    .action {
+      display: grid;
+      grid-template-rows: repeat(2, 1fr);
+      grid-row-gap: 1rem;
     }
   }
   .imageUpload {
-    margin-top: 4rem;
+ 
     input[type="file"] {
       border: 0;
       clip: rect(0, 0, 0, 0);
@@ -89,5 +95,10 @@
       height: 100%;
       padding: 0.5rem;
     }
+  }
+}
+.Preview{
+  &Image{
+    max-width: 100%;
   }
 }

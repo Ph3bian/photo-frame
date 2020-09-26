@@ -46,7 +46,6 @@ const Home: React.FC = () => {
       switch (type) {
         case "crop":
           cropper.crop();
-
           return setCropData(cropper.getCroppedCanvas().toDataURL());
         case "scale":
           cropper.scale(0, 1.01);
@@ -90,9 +89,11 @@ const Home: React.FC = () => {
               </Button>
             ))}
         </div>
-        <div className={styles.imageUpload}>
-          <label htmlFor="file">Upload</label>
-          <input type="file" onChange={onChange} name="file" id="file" />
+        <div className={styles.action}>
+          <div className={styles.imageUpload}>
+            <label htmlFor="file">Upload</label>
+            <input type="file" onChange={onChange} name="file" id="file" />
+          </div>
 
           <Button type="button" onClick={handlePublish}>
             Publish
@@ -119,7 +120,6 @@ const Home: React.FC = () => {
               dragMode={"move"}
               checkOrientation={true}
               rotatable={true}
-              modal={true}
               onInitialized={(instance) => {
                 setCropper(instance);
               }}
@@ -131,9 +131,13 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
-      {showModal && <Preview data={cropData} showModal={showModal} setShowModal={setShowModal}/>
-       
-      }
+      {showModal && (
+        <Preview
+          data={cropData}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      )}
     </div>
   );
 };

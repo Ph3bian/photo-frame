@@ -57,7 +57,6 @@ const Modal: React.FC<ModalProps> = ({
             onClick={() =>  handleShow(!show)}
           />
         </div>
-        <h1>Hello</h1>
         <div className={styles.body}>{children}</div>
       </div>
     </div>
