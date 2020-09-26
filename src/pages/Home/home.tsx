@@ -10,7 +10,7 @@ import Preview from "./preview";
 const Home: React.FC = () => {
   const [image, setImage] = useState<string>(DefaultImage);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [cropData, setCropData] = useState<string>("#");
+  const [cropData, setCropData] = useState<string>("");
   const imageRef = useRef<HTMLImageElement>(null);
   const [cropper, setCropper] = useState<Cropper>();
 

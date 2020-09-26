@@ -16,7 +16,16 @@ const Preview: React.FC<PreviewProps> = ({ data, showModal, setShowModal }) => (
     show={showModal}
   >
     <div className={styles.Preview}>
-      <img src={data} alt="preview" id="img-preview"className={styles.PreviewImage} />
+      {data ? (
+        <img
+          src={data}
+          alt="preview"
+          id="img-preview"
+          className={styles.PreviewImage}
+        />
+      ) : (
+        <p>To Publish image to a photo frame, editing image is required</p>
+      )}
     </div>
   </Modal>
 );

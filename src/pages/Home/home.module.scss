@@ -12,7 +12,7 @@
   overflow: hidden;
   font-family: "Syne", sans-serif;
   .controls {
-    background-color: $bg-white;
+    background-color: $white;
     padding: 1rem;
     text-align: center;
     &Button {
@@ -79,7 +79,7 @@
     grid-row-gap: 1rem;
     &Header,
     &Body {
-      background-color: $bg-white;
+      background-color: $white;
     }
     &Header {
       border-bottom: 1px solid $light-grey;
