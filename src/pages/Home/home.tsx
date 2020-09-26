@@ -4,7 +4,7 @@ import { Cropper } from "react-cropper";
 import styles from "./home.module.scss";
 import DefaultImage from "../../assets/images/headshot.png";
 import Button from "../../components/Button";
-import { postData, editActions } from "./functions";
+import { editActions } from "./functions";
 import Preview from "./preview";
 
 const Home: React.FC = () => {
@@ -35,7 +35,7 @@ const Home: React.FC = () => {
   //       console.log("Success:", data);
   //     })
   //     .catch((error) => {
-  //       error ? console.error("Error:", error) : console.error("Uhoh");
+  //       error ? console.error("Error:", error) : console.error("");
   //     });
   // };
 
