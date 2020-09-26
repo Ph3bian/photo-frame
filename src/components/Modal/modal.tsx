@@ -1,12 +1,15 @@
-import React, {  useRef, useCallback, useEffect } from "react";
+import React, { useRef, useCallback, useEffect } from "react";
 import styles from "./modal.module.scss";
 import { CloseIcon } from "../../assets/svg";
+import Button from "../Button";
 export interface ModalProps {
   children: React.ReactNode;
   props?: any;
   title: string;
   show?: boolean;
- handleShow: (a:boolean) => void;
+  handleShow: (a: boolean) => void;
+  hasFooter?: boolean;
+  hasHeader?: boolean;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -14,6 +17,8 @@ const Modal: React.FC<ModalProps> = ({
   title,
   handleShow,
   show,
+  hasFooter,
+  hasHeader,
 }) => {
   const node = useRef<HTMLDivElement>(null);
 
@@ -24,7 +29,7 @@ const Modal: React.FC<ModalProps> = ({
         return;
       }
     },
-    [handleShow,show]
+    [handleShow, show]
   );
   const handleClick = useCallback(
     (event) => {
@@ -33,7 +38,7 @@ const Modal: React.FC<ModalProps> = ({
         return;
       }
     },
-    [handleShow,show]
+    [handleShow, show]
   );
 
   useEffect(() => {
@@ -54,10 +59,30 @@ const Modal: React.FC<ModalProps> = ({
           <CloseIcon
             role="button"
             onKeyDown={() => handleShow(!show)}
-            onClick={() =>  handleShow(!show)}
+            onClick={() => handleShow(!show)}
           />
         </div>
         <div className={styles.body}>{children}</div>
+        {hasFooter && (
+          <div className={styles.footer}>
+            <Button
+              type="button"
+              variant="neutral"
+              onKeyDown={() => handleShow(!show)}
+              onClick={() => handleShow(!show)}
+            >
+              Close
+            </Button>
+            <Button
+              type="button"
+              data-dismiss="modal"
+              variant="primary"
+              onClick={() => null}
+            >
+              Close
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

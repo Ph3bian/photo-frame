@@ -13,18 +13,26 @@
   justify-content: center;
   align-items: center;
   &Content {
-    background-color: white;
+    background-color: $white;
     height: 500px;
     width: 600px;
-    .header {
+
+    %dflex {
       display: flex;
       justify-content: space-between;
-      padding: 1rem;
       align-items: center;
+    }
+    .header {
+      @extend %dflex;
       border-bottom: 1px solid $light-grey;
     }
-    .body {
+    .body,
+    .header,
+    .footer {
       padding: 1rem;
+    }
+    .footer {
+      @extend %dflex;
     }
   }
 }
