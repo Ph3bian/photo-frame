@@ -17,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({
   variant,
   ...props
 }) => (
-  <button type={type} onClick={onClick} className={[styles['Button'], variant].join(" ")} {...props}>
+  <button type={type} onClick={onClick} className={[styles['Button'], styles[`${variant}`]].join(" ")} {...props}>
     {title ? title : children}
   </button>
 );

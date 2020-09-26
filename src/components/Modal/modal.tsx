@@ -7,9 +7,11 @@ export interface ModalProps {
   props?: any;
   title: string;
   show?: boolean;
+  loading?: boolean;
   handleShow: (a: boolean) => void;
   hasFooter?: boolean;
   hasHeader?: boolean;
+  handleSubmit: () => void;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -18,7 +20,9 @@ const Modal: React.FC<ModalProps> = ({
   handleShow,
   show,
   hasFooter,
-  hasHeader,
+  hasHeader = true,
+  handleSubmit,
+  loading,
 }) => {
   const node = useRef<HTMLDivElement>(null);
 
@@ -54,15 +58,19 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <div role="presentation" className={styles.Modal} ref={node}>
       <div className={styles.ModalContent}>
-        <div className={styles.header}>
-          <h3>{title}</h3>
-          <CloseIcon
-            role="button"
-            onKeyDown={() => handleShow(!show)}
-            onClick={() => handleShow(!show)}
-          />
+        {hasHeader && (
+          <div className={styles.header}>
+            <h3>{title}</h3>
+            <CloseIcon
+              role="button"
+              onKeyDown={() => handleShow(!show)}
+              onClick={() => handleShow(!show)}
+            />
+          </div>
+        )}
+        <div className={styles.body}>
+          <div className={styles.bodyContent}>{children}</div>
         </div>
-        <div className={styles.body}>{children}</div>
         {hasFooter && (
           <div className={styles.footer}>
             <Button
@@ -77,9 +85,10 @@ const Modal: React.FC<ModalProps> = ({
               type="button"
               data-dismiss="modal"
               variant="primary"
-              onClick={() => null}
+              onClick={handleSubmit}
+              disabled={loading}
             >
-              Close
+              {loading ? "loading..." : "Submit"}
             </Button>
           </div>
         )}

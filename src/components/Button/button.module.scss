@@ -8,4 +8,13 @@
   border-radius: 3px;
   min-width: 8rem;
   font-size: 1rem;
+ 
+  &.neutral{
+    border: $light-grey 1px solid;
+  }
+  &.primary {
+    border: $primary 1px solid;
+    background-color: $primary;
+    color: $white;
+  }
 }

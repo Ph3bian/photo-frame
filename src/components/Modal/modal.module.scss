@@ -25,11 +25,19 @@
     .header {
       @extend %dflex;
       border-bottom: 1px solid $light-grey;
+      h3 {
+        margin: 0;
+      }
     }
     .body,
     .header,
     .footer {
       padding: 1rem;
+    }
+    .body {
+      &Content {
+        min-height: 20rem;
+      }
     }
     .footer {
       @extend %dflex;
