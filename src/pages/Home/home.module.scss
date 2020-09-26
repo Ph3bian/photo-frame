@@ -28,7 +28,6 @@
     }
   }
   .imageUpload {
- 
     input[type="file"] {
       border: 0;
       clip: rect(0, 0, 0, 0);
@@ -97,8 +96,11 @@
     }
   }
 }
-.Preview{
-  &Image{
-    max-width: 100%;
+.Preview {
+  &Image {
+    object-fit: contain;
+    max-height: 21.25rem;
+    width: 100%;
+    object-position: center;
   }
 }

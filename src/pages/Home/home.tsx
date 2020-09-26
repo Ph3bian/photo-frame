@@ -38,32 +38,31 @@ const Home: React.FC = () => {
     if (typeof cropper !== "undefined") {
       switch (type) {
         case "crop":
-          cropper.crop();
-          return setCropData(cropper.getCroppedCanvas().toDataURL());
+          return cropper.crop();
+
         case "scale":
-          cropper.scale(0, 1.01);
-          return setCropData(cropper.getCroppedCanvas().toDataURL());
+          return cropper.scale(0, 1.01);
+
         case "rotate":
-          cropper.rotate(90);
-          return setCropData(cropper.getCroppedCanvas().toDataURL());
+          return cropper.rotate(90);
+
         case "clear":
-          cropper.clear();
-          return setCropData(cropper.getCroppedCanvas().toDataURL());
+          return cropper.clear();
+
         case "reset":
-          cropper.reset();
-          return setCropData(cropper.getCroppedCanvas().toDataURL());
+          return cropper.reset();
+
         case "moveDown":
-          cropper.move(0, 10);
-          return setCropData(cropper.getCroppedCanvas().toDataURL());
+          return cropper.move(0, 10);
+
         case "moveUp":
-          cropper.move(0, -10);
-          return setCropData(cropper.getCroppedCanvas().toDataURL());
+          return cropper.move(0, -10);
+
         case "moveLeft":
-          cropper.move(-10, 0);
-          return setCropData(cropper.getCroppedCanvas().toDataURL());
+          return cropper.move(-10, 0);
+
         case "moveRight":
-          cropper.move(10, 0);
-          return setCropData(cropper.getCroppedCanvas().toDataURL());
+          return cropper.move(10, 0);
         case "publish":
           return setCropData(cropper.getCroppedCanvas().toDataURL());
         default:
