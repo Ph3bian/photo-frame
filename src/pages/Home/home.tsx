@@ -29,10 +29,10 @@ const Home: React.FC = () => {
     reader.readAsDataURL(files[0]);
   };
 
- 
-  const handlePublish = () =>{ 
-    if(!showModal)handleData('publish') 
-    setShowModal(!showModal) };
+  const handlePublish = () => {
+    if (!showModal) handleData("publish");
+    setShowModal(!showModal);
+  };
 
   const handleData = (type: string) => {
     if (typeof cropper !== "undefined") {
@@ -64,8 +64,8 @@ const Home: React.FC = () => {
         case "moveRight":
           cropper.move(10, 0);
           return setCropData(cropper.getCroppedCanvas().toDataURL());
-          case "publish":
-            return setCropData(cropper.getCroppedCanvas().toDataURL());
+        case "publish":
+          return setCropData(cropper.getCroppedCanvas().toDataURL());
         default:
           return;
       }
