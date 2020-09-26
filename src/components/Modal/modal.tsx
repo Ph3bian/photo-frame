@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, {  useRef, useCallback, useEffect } from "react";
 import styles from "./modal.module.scss";
 import { CloseIcon } from "../../assets/svg";
 export interface ModalProps {

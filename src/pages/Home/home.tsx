@@ -29,15 +29,15 @@ const Home: React.FC = () => {
     reader.readAsDataURL(files[0]);
   };
 
-  const handleSubmit = () => {
-    postData("http://localhost:3000", { image: cropData })
-      .then((data) => {
-        console.log("Success:", data);
-      })
-      .catch((error) => {
-        error ? console.error("Error:", error) : console.error("Uhoh");
-      });
-  };
+  // const handleSubmit = () => {
+  //   postData("http://localhost:3000", { image: cropData })
+  //     .then((data) => {
+  //       console.log("Success:", data);
+  //     })
+  //     .catch((error) => {
+  //       error ? console.error("Error:", error) : console.error("Uhoh");
+  //     });
+  // };
 
   const handlePublish = () => setShowModal(!showModal);
 
