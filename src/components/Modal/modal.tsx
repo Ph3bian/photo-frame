@@ -6,35 +6,34 @@ export interface ModalProps {
   props?: any;
   title: string;
   show?: boolean;
-  outsideClick?: () => void;
+ handleShow: (a:boolean) => void;
 }
 
 const Modal: React.FC<ModalProps> = ({
   children,
   title,
-  outsideClick,
+  handleShow,
   show,
 }) => {
-  const [isOpen, setIsOpen] = useState(show);
   const node = useRef<HTMLDivElement>(null);
 
   const handleHide = useCallback(
     (event: any) => {
       if (event.key === "Escape") {
-        setIsOpen(false);
+        handleShow(!show);
         return;
       }
     },
-    [setIsOpen]
+    [handleShow,show]
   );
   const handleClick = useCallback(
     (event) => {
       if (node.current && !node.current.contains(event.target)) {
-        setIsOpen(false);
+        handleShow(!show);
         return;
       }
     },
-    [setIsOpen]
+    [handleShow,show]
   );
 
   useEffect(() => {
@@ -48,17 +47,15 @@ const Modal: React.FC<ModalProps> = ({
   }, [handleClick, handleHide]);
 
   return (
-    <div className={styles.Modal} ref={node}>
-      <div
-        tabIndex={0}
-        role="button"
-        onKeyDown={() => setIsOpen(true)}
-        onClick={() => setIsOpen(true)}
-        className={styles.ModalContent}
-      >
+    <div role="presentation" className={styles.Modal} ref={node}>
+      <div className={styles.ModalContent}>
         <div className={styles.header}>
           <h3>{title}</h3>
-          <CloseIcon />
+          <CloseIcon
+            role="button"
+            onKeyDown={() => handleShow(!show)}
+            onClick={() =>  handleShow(!show)}
+          />
         </div>
         <h1>Hello</h1>
         <div className={styles.body}>{children}</div>

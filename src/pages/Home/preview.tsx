@@ -10,9 +10,14 @@ interface PreviewProps {
 }
 
 const Preview: React.FC<PreviewProps> = ({ data, showModal, setShowModal }) => (
-  <Modal title="Download Photo Frame">
+  <Modal
+    title="Download Photo Frame"
+    handleShow={setShowModal}
+    show={showModal}
+  >
     <div className={styles.Preview}>
       <img src={data} alt="preview" />
+      <div id="img-preview"></div>
     </div>
   </Modal>
 );
