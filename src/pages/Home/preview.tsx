@@ -12,7 +12,7 @@ interface PreviewProps {
 
 const Preview: React.FC<PreviewProps> = ({ data, showModal, setShowModal }) => {
   const handleSubmit = () => {
-    postData("http://localhost:3000", { image: data })
+    postData("https://photo-framer.herokuapp.com/upload", { image: data })
       .then((data) => {
         console.log("Success:", data);
       })
