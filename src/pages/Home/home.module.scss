@@ -68,6 +68,7 @@
       border: $light-grey 1px solid;
       padding: 0.5rem;
       border-radius: 3px;
+      cursor: pointer;
       &:hover{
         border-color: $black;
       }
