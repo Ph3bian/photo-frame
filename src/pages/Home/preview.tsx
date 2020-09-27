@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./home.module.scss";
 import Modal from "../../components/Modal";
 import { postData } from "./functions";
@@ -11,12 +11,21 @@ interface PreviewProps {
 }
 
 const Preview: React.FC<PreviewProps> = ({ data, showModal, setShowModal }) => {
+const[loading, setLoading]=useState<boolean>(false)
   const handleSubmit = () => {
+    setLoading(true)
     postData("https://photo-framer.herokuapp.com/upload", { image: data })
-      .then((data) => {
-        console.log("Success:", data);
+      .then((response) => {
+        setLoading(false)
+        const { data } = response;
+        var a = document.createElement("a"); 
+        a.href = data; 
+        a.download = "framed-image.png"; 
+        a.click(); 
+       
       })
       .catch((error) => {
+        setLoading(false)
         error ? console.error("Error:", error) : console.error("");
       });
   };
@@ -27,6 +36,7 @@ const Preview: React.FC<PreviewProps> = ({ data, showModal, setShowModal }) => {
       show={showModal}
       handleSubmit={handleSubmit}
       hasFooter
+      loading={loading}
     >
       <div className={styles.Preview}>
         {data ? (

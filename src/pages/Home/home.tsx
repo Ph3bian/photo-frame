@@ -40,9 +40,14 @@ const Home: React.FC = () => {
         case "crop":
           return cropper.crop();
 
-        case "scale":
-          return cropper.scale(0, 1.01);
-
+        case "scaleDown":
+          return cropper.scaleY(-1);
+        case "scaleUp":
+          return cropper.scaleY(1);
+        case "scaleRight":
+          return cropper.scaleX(1);
+        case "scaleLeft":
+          return cropper.scaleX(-1);
         case "rotate":
           return cropper.rotate(90);
 
@@ -63,6 +68,10 @@ const Home: React.FC = () => {
 
         case "moveRight":
           return cropper.move(10, 0);
+        case "zoomIn":
+          return cropper.zoom(-0.1);
+        case "zoomOut":
+          return cropper.zoom(0.1);
         case "publish":
           return setCropData(cropper.getCroppedCanvas().toDataURL());
         default:

@@ -28,7 +28,7 @@ export const editActions: {
     key: "crop",
   },
   {
-    title: "move Up",
+    title: "Move Up",
     key: "moveUp",
   },
   {
@@ -40,6 +40,14 @@ export const editActions: {
     key: "moveRight",
   },
   {
+    title: "Zoom In",
+    key: "zoomIn",
+  },
+  {
+    title: "Zoom Out",
+    key: "zoomOut",
+  },
+  {
     title: "Move Left",
     key: "moveLeft",
   },
@@ -48,8 +56,20 @@ export const editActions: {
     key: "rotate",
   },
   {
-    title: "Scale",
-    key: "scale",
+    title: "Scale Right",
+    key: "scaleRight",
+  },
+  {
+    title: "Scale Left",
+    key: "scaleLeft",
+  },
+  {
+    title: "Scale Up",
+    key: "scaleUp",
+  },
+  {
+    title: "Scale Down",
+    key: "scaleDown",
   },
   {
     title: "Clear",
