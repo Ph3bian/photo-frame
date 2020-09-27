@@ -36,8 +36,8 @@ const Modal: React.FC<ModalProps> = ({
     [handleShow, show]
   );
   const handleClick = useCallback(
-    (event: { target: any; }) => {
-      if (node.current && !node.current.contains(event.target)) {
+    (event:any ) => {
+      if (node.current && !node.current.contains( event.target)) {
         handleShow(!show);
         return;
       }
@@ -46,18 +46,18 @@ const Modal: React.FC<ModalProps> = ({
   );
 
   useEffect(() => {
-    document.addEventListener("keydown", handleHide, true);
-    document.addEventListener("click", handleClick, true);
+    document.addEventListener("keydown", handleHide);
+    document.addEventListener("click", handleClick);
 
     return () => {
-      document.removeEventListener("keydown", handleHide, true);
-      document.removeEventListener("click", handleClick, true);
+      document.removeEventListener("keydown", handleHide);
+      document.removeEventListener("click", handleClick);
     };
   }, [handleClick, handleHide]);
 
   return (
-    <div role="dialog" className={styles.Modal} ref={node}>
-      <div className={styles.ModalContent}>
+    <div role="dialog" className={styles.Modal}>
+      <div className={styles.ModalContent}  ref={node}>
         {hasHeader && (
           <div className={styles.header}>
             <h3>{title}</h3>

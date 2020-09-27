@@ -127,10 +127,6 @@ const Home: React.FC = () => {
                 setCropper(instance);
               }}
             />
-
-            <div className={styles.imagePublish}>
-              {/* <img style={{ width: "100%" }} src={cropData} alt="cropped" /> */}
-            </div>
           </div>
         </div>
       </div>
