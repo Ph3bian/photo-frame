@@ -87,7 +87,7 @@ const Home: React.FC = () => {
         <div className={styles.controlsButton}>
           {editActions &&
             editActions.map(({ key, title }) => (
-              <Button type="button" key={key} onClick={() => handleData(key)}>
+              <Button type="button" name={key} key={key} onClick={() => handleData(key)}>
                 {title}
               </Button>
             ))}

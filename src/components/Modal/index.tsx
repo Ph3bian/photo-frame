@@ -36,7 +36,7 @@ const Modal: React.FC<ModalProps> = ({
     [handleShow, show]
   );
   const handleClick = useCallback(
-    (event) => {
+    (event: { target: any; }) => {
       if (node.current && !node.current.contains(event.target)) {
         handleShow(!show);
         return;
@@ -56,7 +56,7 @@ const Modal: React.FC<ModalProps> = ({
   }, [handleClick, handleHide]);
 
   return (
-    <div role="presentation" className={styles.Modal} ref={node}>
+    <div role="dialog" className={styles.Modal} ref={node}>
       <div className={styles.ModalContent}>
         {hasHeader && (
           <div className={styles.header}>
@@ -87,6 +87,7 @@ const Modal: React.FC<ModalProps> = ({
               variant="primary"
               onClick={handleSubmit}
               disabled={loading}
+              name="submit"
             >
               {loading ? "loading..." : "Submit"}
             </Button>
