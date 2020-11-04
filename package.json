@@ -50,6 +50,8 @@
     "@storybook/preset-create-react-app": "^3.1.4",
     "@storybook/react": "^6.0.21",
     "babel-loader": "^8.1.0",
-    "react-is": "^16.13.1"
+    "react-is": "^16.13.1",
+    "jest-axe": "^4.1.0",
+    "@types/jest-axe":"3.5.1"
   }
 }
