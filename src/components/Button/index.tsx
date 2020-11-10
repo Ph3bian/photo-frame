@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styles from "./button.module.scss";
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  type: "button" | "reset" | "submit" | undefined;
-  onClick(): void;
-  children: any;
+  type?: "button" | "reset" | "submit" | undefined;
+  onClick?: () => void;
+  children?: ReactNode;
   props?: any;
   title?: string;
   variant?: string;
@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
   <button
     type={type}
     onClick={onClick}
-    className={[styles["Button"], styles[`${variant}`]].join(" ")}
+    className={[styles["Button"], variant && styles[`${variant}`]].join(" ")}
     {...props}
   >
     {title ? title : children}
